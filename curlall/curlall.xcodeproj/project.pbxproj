@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B92C57711DAF207E000B1926 /* HXTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = B92C57701DAF207E000B1926 /* HXTask.swift */; };
 		B95D02401DA9AA7B0094E44D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D023F1DA9AA7B0094E44D /* main.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B92C57701DAF207E000B1926 /* HXTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HXTask.swift; sourceTree = "<group>"; };
 		B95D023C1DA9AA7B0094E44D /* curlall */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = curlall; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95D023F1DA9AA7B0094E44D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				B95D023F1DA9AA7B0094E44D /* main.swift */,
+				B92C57701DAF207E000B1926 /* HXTask.swift */,
 			);
 			path = curlall;
 			sourceTree = "<group>";
@@ -121,6 +124,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B92C57711DAF207E000B1926 /* HXTask.swift in Sources */,
 				B95D02401DA9AA7B0094E44D /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,6 +257,7 @@
 				B95D02451DA9AA7B0094E44D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

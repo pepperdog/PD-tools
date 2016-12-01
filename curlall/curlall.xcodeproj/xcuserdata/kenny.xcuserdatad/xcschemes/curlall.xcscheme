@@ -61,6 +61,12 @@
             ReferencedContainer = "container:curlall.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "https://api.github.com/repos/apple/swift/pulls"
+            isEnabled = "YES">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
