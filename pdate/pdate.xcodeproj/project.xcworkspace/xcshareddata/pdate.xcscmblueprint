@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EC191BA0E7C27F2FEFF669556AF4F2AB2391BC36",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5C58CBBBD6264A835FA1696A43B23051B4D929B0" : 9223372036854775807,
+    "EC191BA0E7C27F2FEFF669556AF4F2AB2391BC36" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "28214C33-849B-4745-B4BF-5A03D5CD2A12",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5C58CBBBD6264A835FA1696A43B23051B4D929B0" : "PD-tools\/Submodules\/hexdreamsCocoa\/",
+    "EC191BA0E7C27F2FEFF669556AF4F2AB2391BC36" : "PD-tools\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "pdate",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "pdate\/pdate.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/hexdreamer\/hexdreamsCocoa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5C58CBBBD6264A835FA1696A43B23051B4D929B0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/pepperdog\/PD-tools.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EC191BA0E7C27F2FEFF669556AF4F2AB2391BC36"
+    }
+  ]
+}
