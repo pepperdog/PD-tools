@@ -9,9 +9,31 @@
 import Foundation
 
 var args = ProcessInfo.processInfo.arguments
+var input = args[1]
 
-let parser = InputParser(arguments:args)
-parser.parse()
+let lexer = pdateLexer(ANTLRInputStream(input))
+let tokens = CommonTokenStream(lexer)
 
-let dateString = Date.GMTFormatter.string(from: parser.referenceDate)
-print("\(dateString) GMT")
+do {
+    let parser = try pdateParser(tokens)
+    let tree = try parser.date_expression()
+    let walker = ParseTreeWalker()
+    let inputParser = InputParser()
+    try walker.walk(inputParser, tree)
+
+    guard let date = inputParser.parsedDate else {
+        fatalError("could not parse date")
+    }
+    let formatter = ISO8601DateFormatter()
+    formatter.formatOptions = [.withFullDate, .withFullTime, .withColonSeparatorInTimeZone]
+    formatter.timeZone = Date.GMT
+    let dateString = formatter.string(from:date)
+    print("\(dateString)")
+} catch ANTLRException.cannotInvokeStartRule {
+    print("Error: cannot invoke start rule.")
+} catch ANTLRException.recognition(let e) {
+    print("Unrecoverable recognition error: \(e)")
+} catch {
+    print("Unknown error: \(error)")
+}
+

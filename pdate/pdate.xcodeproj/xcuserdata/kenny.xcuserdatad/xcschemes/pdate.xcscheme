@@ -63,23 +63,11 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "last"
-            isEnabled = "YES">
+            argument = "&quot;last Monday minus one week&quot;"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "Monday"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "1"
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "week"
+            argument = "&quot;last Monday&quot;"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

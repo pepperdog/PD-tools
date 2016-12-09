@@ -8,61 +8,148 @@
 
 import Foundation
 
-public class InputParser {
+public class InputParser : pdateBaseListener {
     
     let cal :Calendar
-    let args :[String]
     
     let now = Date()
-    var referenceDate :Date
+    var referenceDate = Date()
+    var plusminus :Calendar.SearchDirection?
+    var offset :Int?
+    var timeUnit :Calendar.Component?
+    var parsedDate :Date?
     
-    init(arguments:[String]) {
+    override init() {
         guard let timeZone = TimeZone(abbreviation:"GMT") else {
             fatalError("Could not create timeZone for GMT")
         }
         var calendar = Calendar(identifier:.gregorian)
         calendar.timeZone = timeZone
         self.cal = calendar
-        self.args = arguments
-        self.referenceDate = Date()
     }
-    
-    public func parse() {
-        guard let ref = self.parseReferenceDate(at:args.startIndex.advanced(by:1)) else {
-            return
+
+    override open func exitDate_expression(_ ctx: pdateParser.Date_expressionContext) {
+        guard let plusminus = self.plusminus,
+            let offset = self.offset,
+            let timeUnit = self.timeUnit else {
+                return
         }
-        self.referenceDate = ref
+        self.parsedDate = cal.date(byAdding:timeUnit,
+                                   value:(plusminus == .forward ? offset : -offset),
+                                   to: self.referenceDate)
     }
-    
-    func parseReferenceDate(at:Array<String>.Index) -> Date? {
-        let test = args[at]
+
+    override open func exitReference_date(_ ctx: pdateParser.Reference_dateContext) {
+        print("reference_date")
+    }
+
+    override open func exitLastnext(_ ctx: pdateParser.LastnextContext) {
+        var direction = Calendar.SearchDirection.backward
         
-        if test.caseInsensitiveCompare("last") == .orderedSame {
-            let weekday = self.parseWeekDay(at:at.advanced(by:1))
-            if ( weekday != nil ) {
-                var components = DateComponents()
-                components.weekday = weekday
-                return cal.nextDate(after:self.now, matching:components, matchingPolicy:.nextTime, repeatedTimePolicy:.first, direction:.backward)
+        guard
+            let lastnext = ctx.child(0) as? TerminalNode,
+            let thing = ctx.child(1) as? TerminalNode
+        else {
+            fatalError("Could not understand \(ctx.getText())")
+        }
+
+        if lastnext.getSymbol()?.getType() == pdateParser.Tokens.LAST.rawValue {
+            direction = Calendar.SearchDirection.backward
+        } else if lastnext.getSymbol()?.getType() == pdateParser.Tokens.NEXT.rawValue {
+            direction = Calendar.SearchDirection.forward
+        } else {
+            fatalError("Could not understand \(lastnext.getText()). Must start with last or next")
+        }
+        
+        guard let weekday = self._parseWeekDay(thing.getText()) else {
+            fatalError("Could not understand \(thing.getText()). It should be a weekday")
+        }
+        
+        var components = DateComponents()
+        components.weekday = weekday
+        guard let refDate = cal.nextDate(after:self.now, matching:components, matchingPolicy:.nextTime, repeatedTimePolicy:.first, direction:direction) else {
+            fatalError("Could not understand \(ctx.getText()). Could not parse into a date")
+        }
+        self.referenceDate = refDate
+        self.parsedDate = refDate
+    }
+
+    override open func exitPlusminus(_ ctx: pdateParser.PlusminusContext) {
+        let thing = ctx.getText()
+        if thing == "-" || thing ≅ "minus" {
+            self.plusminus = .backward
+        } else if thing == "+" || thing ≅ "plus" {
+            self.plusminus = .forward
+        }
+    }
+
+    override open func exitNumber(_ ctx: pdateParser.NumberContext) {
+        var offset :Int?
+        
+        let thing = ctx.getText()
+        offset = Int(thing)
+        
+        if offset == nil {
+            if thing ≅ "one" {
+                offset = 1
+            } else if thing ≅ "two" {
+                offset = 2
+            } else if thing ≅ "three" {
+                offset = 3
+            } else if thing ≅ "four" {
+                offset = 4
+            } else if thing ≅ "five" {
+                offset = 5
+            } else if thing ≅ "six" {
+                offset = 6
+            } else if thing ≅ "seven" {
+                offset = 7
+            } else if thing ≅ "eight" {
+                offset = 8
+            } else if thing ≅ "nine" {
+                offset = 9
+            } else if thing ≅ "ten" {
+                offset = 10
             }
         }
         
-        return nil
+        if offset == nil {
+            fatalError("Could not understand \(thing). Could not parse into an integer.")
+        }
+        
+        self.offset = offset
+    }
+
+    override open func exitDate_unit(_ ctx: pdateParser.Date_unitContext) {
+        let thing = ctx.getText()
+        if thing ≅ "year" {
+            self.timeUnit = .year
+        } else if thing ≅ "month" {
+            self.timeUnit = .month
+        } else if thing ≅ "week" {
+            self.timeUnit = .weekOfYear
+        } else if thing ≅ "day" {
+            self.timeUnit = .day
+        } else if thing ≅ "hour" {
+            self.timeUnit = .hour
+        } else if thing ≅ "minute" {
+            self.timeUnit = .minute
+        } else if thing ≅ "second" {
+            self.timeUnit = .second
+        }
     }
     
-    func parseWeekDay(at:Array<String>.Index) -> Int? {
-        let weekdays = cal.weekdaySymbols
-        let test = args[at]
-        
-        for (index,weekday) in weekdays.enumerated() {
-            var testString = test
-            if weekday.endIndex < test.endIndex {
-                testString = test[test.startIndex...weekday.endIndex]
+    private func _parseWeekDay(_ thing :String) -> Int? {
+        for (index,weekday) in cal.weekdaySymbols.enumerated() {
+            var testString = thing
+            if weekday.endIndex < thing.endIndex {
+                testString = thing[thing.startIndex...weekday.endIndex]
             }
-            if testString.caseInsensitiveCompare(weekday) == .orderedSame {
+            if testString ≅ weekday {
                 return index.advanced(by:1)
             }
         }
         return nil
     }
-    
+
 }
