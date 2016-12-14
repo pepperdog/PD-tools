@@ -54,15 +54,24 @@ public class InputParser : pdateBaseListener {
         }
 
         if lastnext.getSymbol()?.getType() == pdateParser.Tokens.LAST.rawValue {
-            direction = Calendar.SearchDirection.backward
+            direction = .backward
         } else if lastnext.getSymbol()?.getType() == pdateParser.Tokens.NEXT.rawValue {
-            direction = Calendar.SearchDirection.forward
+            direction = .forward
         } else {
             fatalError("Could not understand \(lastnext.getText()). Must start with last or next")
         }
         
         guard let weekday = self._parseWeekDay(thing.getText()) else {
             fatalError("Could not understand \(thing.getText()). It should be a weekday")
+        }
+        guard let today = cal.dateComponents([.weekday], from:self.baseDate).weekday else {
+            fatalError("Could not figure out what day of the week today is")
+        }
+        // If we say "last Monday", and today is Monday, then return today.
+        if direction == .backward && weekday == today {
+            self.referenceDate = self.baseDate.beginningOfDay(timeZone:cal.timeZone)
+            self.parsedDate = self.referenceDate
+            return
         }
         
         var components = DateComponents()
@@ -151,5 +160,5 @@ public class InputParser : pdateBaseListener {
         }
         return nil
     }
-
+    
 }
