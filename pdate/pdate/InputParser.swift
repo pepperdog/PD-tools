@@ -12,13 +12,13 @@ public class InputParser : pdateBaseListener {
     
     let cal :Calendar
     
-    let now = Date()
+    var baseDate = Date()
     var referenceDate = Date()
     var plusminus :Calendar.SearchDirection?
     var offset :Int?
     var timeUnit :Calendar.Component?
     var parsedDate :Date?
-    
+        
     override init() {
         guard let timeZone = TimeZone(abbreviation:"GMT") else {
             fatalError("Could not create timeZone for GMT")
@@ -27,7 +27,7 @@ public class InputParser : pdateBaseListener {
         calendar.timeZone = timeZone
         self.cal = calendar
     }
-
+    
     override open func exitDate_expression(_ ctx: pdateParser.Date_expressionContext) {
         guard let plusminus = self.plusminus,
             let offset = self.offset,
@@ -67,7 +67,7 @@ public class InputParser : pdateBaseListener {
         
         var components = DateComponents()
         components.weekday = weekday
-        guard let refDate = cal.nextDate(after:self.now, matching:components, matchingPolicy:.nextTime, repeatedTimePolicy:.first, direction:direction) else {
+        guard let refDate = cal.nextDate(after:self.baseDate, matching:components, matchingPolicy:.nextTime, repeatedTimePolicy:.first, direction:direction) else {
             fatalError("Could not understand \(ctx.getText()). Could not parse into a date")
         }
         self.referenceDate = refDate

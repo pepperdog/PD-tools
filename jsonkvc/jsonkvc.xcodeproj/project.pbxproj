@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		B95D02531DA9AB0A0094E44D /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D02521DA9AB0A0094E44D /* main.swift */; };
+		B9912F2F1DFC8F45008215A6 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9912F1B1DFC8F45008215A6 /* DateExtensions.swift */; };
+		B9912F301DFC8F45008215A6 /* NSSortDescriptorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9912F1C1DFC8F45008215A6 /* NSSortDescriptorExtensions.swift */; };
+		B9912F311DFC8F45008215A6 /* CommandLineInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9912F1E1DFC8F45008215A6 /* CommandLineInterface.swift */; };
+		B9912F321DFC8F45008215A6 /* hexdreams.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9912F1F1DFC8F45008215A6 /* hexdreams.swift */; };
+		B9912F351DFC8F45008215A6 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9912F241DFC8F45008215A6 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +30,11 @@
 /* Begin PBXFileReference section */
 		B95D024F1DA9AB0A0094E44D /* jsonkvc */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jsonkvc; sourceTree = BUILT_PRODUCTS_DIR; };
 		B95D02521DA9AB0A0094E44D /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B9912F1B1DFC8F45008215A6 /* DateExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		B9912F1C1DFC8F45008215A6 /* NSSortDescriptorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSSortDescriptorExtensions.swift; sourceTree = "<group>"; };
+		B9912F1E1DFC8F45008215A6 /* CommandLineInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandLineInterface.swift; sourceTree = "<group>"; };
+		B9912F1F1DFC8F45008215A6 /* hexdreams.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hexdreams.swift; sourceTree = "<group>"; };
+		B9912F241DFC8F45008215A6 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				B95D02511DA9AB0A0094E44D /* jsonkvc */,
+				B9912F101DFC8F45008215A6 /* hexdreamsCocoa */,
 				B95D02501DA9AB0A0094E44D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -60,6 +71,43 @@
 				B95D02521DA9AB0A0094E44D /* main.swift */,
 			);
 			path = jsonkvc;
+			sourceTree = "<group>";
+		};
+		B9912F101DFC8F45008215A6 /* hexdreamsCocoa */ = {
+			isa = PBXGroup;
+			children = (
+				B9912F1F1DFC8F45008215A6 /* hexdreams.swift */,
+				B9912F1D1DFC8F45008215A6 /* hexdreams */,
+				B9912F1A1DFC8F45008215A6 /* Foundation */,
+				B9912F221DFC8F45008215A6 /* Swift */,
+			);
+			name = hexdreamsCocoa;
+			path = ../Submodules/hexdreamsCocoa/Sources;
+			sourceTree = SOURCE_ROOT;
+		};
+		B9912F1A1DFC8F45008215A6 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B9912F1B1DFC8F45008215A6 /* DateExtensions.swift */,
+				B9912F1C1DFC8F45008215A6 /* NSSortDescriptorExtensions.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		B9912F1D1DFC8F45008215A6 /* hexdreams */ = {
+			isa = PBXGroup;
+			children = (
+				B9912F1E1DFC8F45008215A6 /* CommandLineInterface.swift */,
+			);
+			path = hexdreams;
+			sourceTree = "<group>";
+		};
+		B9912F221DFC8F45008215A6 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				B9912F241DFC8F45008215A6 /* StringExtensions.swift */,
+			);
+			path = Swift;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -89,7 +137,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "PepperDog Enterprises";
 				TargetAttributes = {
 					B95D024E1DA9AB0A0094E44D = {
@@ -122,6 +170,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B95D02531DA9AB0A0094E44D /* main.swift in Sources */,
+				B9912F301DFC8F45008215A6 /* NSSortDescriptorExtensions.swift in Sources */,
+				B9912F2F1DFC8F45008215A6 /* DateExtensions.swift in Sources */,
+				B9912F321DFC8F45008215A6 /* hexdreams.swift in Sources */,
+				B9912F311DFC8F45008215A6 /* CommandLineInterface.swift in Sources */,
+				B9912F351DFC8F45008215A6 /* StringExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +199,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -194,6 +248,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -213,6 +268,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 			};
 			name = Release;
 		};
@@ -253,6 +309,7 @@
 				B95D02581DA9AB0A0094E44D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
